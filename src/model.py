@@ -23,7 +23,7 @@ class MentalHealthLLM:
             model=model, seed=seed, gpu_memory_utilization=gpu_memory_utilization
         )
 
-    def revoke(self, prompts: list[str]) -> list[RequestOutput]:
+    def invoke(self, prompts: list[str]) -> list[RequestOutput]:
         messages: list[list[ChatCompletionMessageParam]] = [
             [
                 {"role": "system", "content": self.sys_prompt},
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     print("Generating responses in a loop:")
     start = time.time()
     for prompt in prompts:
-        output = llm.revoke([prompt])
+        output = llm.invoke([prompt])
         print(output[0].outputs[0].text)
 
     end = time.time()
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     # Generate responses in batch
     print("Generating responses in batch:")
     start = time.time()
-    outputs = llm.revoke(prompts)
+    outputs = llm.invoke(prompts)
     for out in outputs:
         print(out.outputs[0].text)
 
