@@ -33,7 +33,7 @@ class MentalHealthLLM:
         ]
         outputs = self.model.chat(
             messages=messages,
-            sampling_params=self.sampling_params,
+            sampling_params=self.sampling_params
         )
         return outputs
 
